@@ -1,15 +1,14 @@
-// const express = require('express');
+const express = require('express');
+const companyroutes = require('./routes/routes.js');
 
-// const  = require('./src/routes/userRoutes');
-// const app = express();
+const app = express();
 
-// const PORT = 3000;
+const PORT = 3000;
 
-// // app.use(express.json());
+app.use(express.json());
 
-// // app.use('/users', userRouter);
+app.use('/api', companyroutes);
 
-// // Server running
-// app.listen(PORT, async () => {
-//   console.log(`Server is running at port: ${PORT}`);
-// });
+app.listen(PORT, async () => {
+  console.log(`Server is running at port: ${PORT}`);
+});
