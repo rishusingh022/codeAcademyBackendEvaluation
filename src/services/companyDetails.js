@@ -30,6 +30,3 @@ module.exports= {
   saveCompanySectorDetails,
   updateCompanyScore,
 };
-
-
-
