@@ -18,11 +18,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   companyDetails.init({
-    id: DataTypes.STRING,
+    companyId: DataTypes.STRING,
     name: DataTypes.STRING,
-    tags: DataTypes.ARRAY(DataTypes.STRING),
+    description: DataTypes.STRING,
     ceo: DataTypes.STRING,
-    numberEmployees: DataTypes.INTEGER
+    tags: DataTypes.ARRAY(DataTypes.STRING),
+    score: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'companyDetails',

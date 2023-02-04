@@ -9,20 +9,24 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
+      companyId: {
         type: Sequelize.STRING
       },
       name: {
         type: Sequelize.STRING
       },
-      tags: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+      description : {
+        type: Sequelize.STRING
       },
       ceo: {
         type: Sequelize.STRING
       },
-      numberEmployees: {
-        type: Sequelize.INTEGER
+      tags: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
+      score : {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       createdAt: {
         allowNull: false,
