@@ -2,7 +2,7 @@ const Joi = require('joi');
 const {HTTPError} = require('../utils/errors');
 
 const urlSchema = Joi.object({
-  url: Joi.string().uri().required(),
+  urlLink: Joi.string().uri().required(),
 });
 
 const urlValidator = async (req, res, next) => {
