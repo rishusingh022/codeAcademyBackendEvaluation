@@ -1,0 +1,26 @@
+{
+	"info": {
+		"_postman_id": "5b603504-d4af-49cd-aa0d-a325dbccec52",
+		"name": "Backend Evaluation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14047608"
+	},
+	"item": [
+		{
+			"name": "Get",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
