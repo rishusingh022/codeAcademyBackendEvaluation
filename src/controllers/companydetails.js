@@ -57,7 +57,7 @@ const saveCompanyDetails = async (req, res) => {
                     });
                   }
                 });
-                companyServices.saveCompanySectorDetails(companyId,data);
+                companyServices.saveCompanySectorDetails(data);
               })
               .catch(err => console.log(err));
 
