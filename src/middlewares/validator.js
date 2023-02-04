@@ -1,8 +1,8 @@
 const Joi = require('joi');
-const {HTTPError} = require('../src/error');
+const {HTTPError} = require('../utils/errors');
 
 const urlSchema = Joi.object({
-  task: Joi.string().regex(/^[0-9]+$/).min(1).max(30).required()
+  url: Joi.string().uri().required(),
 });
 
 const urlValidator = async (req, res, next) => {
