@@ -12,11 +12,11 @@ const getURL = async (url) => {
 const saveCompanyDetails = async (req, res) => {
   try{
     const { body } = req;
-    getURL(body.urlLink)
-      .then(data => {
+    await getURL(body.urlLink)
+      .then(async(data) => {
         const splitData = data.split('\n');
         let i = 0;
-        splitData.forEach((item) => {
+        for(const item of splitData) {
           if(i === 0){
             i++;
           }
@@ -25,17 +25,17 @@ const saveCompanyDetails = async (req, res) => {
             const splitItem = item.split(',');
             const id = splitItem[0];
             const sector = splitItem[1];
-            getURL(`http://54.167.46.10/company/${id}`)
+            await getURL(`http://54.167.46.10/company/${id}`)
               .then(data => {
                 companyId = data.id;
                 companyServices.saveCompanyDetails(data);
               })
               .catch(err => console.log(err));
-            getURL(`http://54.167.46.10/sector?name=${sector}`)
+            await getURL(`http://54.167.46.10/sector?name=${sector}`)
               .then(data => {
                 data.forEach(ele => {
-                  if(ele.id === companyId){
-                    const performanceIndexMatrix = ele.performanceIndexMatrix;
+                  if(ele.companyId === companyId){
+                    const performanceIndexMatrix = ele.performanceIndex;
                     let temp_score = 0;
                     performanceIndexMatrix.forEach(element => {
                       if(element.key === 'cpi'){
@@ -53,7 +53,7 @@ const saveCompanyDetails = async (req, res) => {
                     });
                     score.push({
                       companyId: companyId,
-                      score: temp_score,
+                      score: parseInt(temp_score),
                     });
                   }
                 });
@@ -62,7 +62,7 @@ const saveCompanyDetails = async (req, res) => {
               .catch(err => console.log(err));
 
           }
-        });
+        }
 
       })
       .catch(err => console.log(err));
