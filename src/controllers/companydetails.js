@@ -53,7 +53,8 @@ const saveCompanyDetails = async (req, res) => {
                     });
                     score.push({
                       companyId: companyId,
-                      score: parseInt(temp_score),
+                      score: temp_score,
+                      sector: sector,
                     });
                   }
                 });
@@ -81,6 +82,21 @@ const saveCompanyDetails = async (req, res) => {
   }
 };
 
+const getTopRankedCompanyDetails = async (req, res) => {
+  try{
+    const topRankedCompanies = await companyServices.getTopRankedCompanyDetails(req.params.sectorName);
+    return res.status(200).json({
+      messsage : 'Top ranked companies fetched successfully',
+      data : topRankedCompanies,
+    });
+  }
+  catch(err){
+    return res.status(500).json({
+      message: 'Internal Server Error',
+    });
+  }
+};
 module.exports = {
   saveCompanyDetails,
+  getTopRankedCompanyDetails
 }; 
