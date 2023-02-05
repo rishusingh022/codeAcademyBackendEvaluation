@@ -96,7 +96,23 @@ const getTopRankedCompanyDetails = async (req, res) => {
     });
   }
 };
+const updateCompanyDetails = async (req, res) => {
+  try{
+    const updatedCompanyDetails = await companyServices.updateCompanyDetails(req.params.id, req.body);
+    return res.status(200).json({
+      messsage : 'Company details updated successfully',
+      data : updatedCompanyDetails,
+    });
+  }
+  catch(err){
+    return res.status(500).json({
+      message: 'Internal Server Error',
+    });
+  }
+};
+
 module.exports = {
   saveCompanyDetails,
-  getTopRankedCompanyDetails
+  getTopRankedCompanyDetails,
+  updateCompanyDetails,
 }; 

@@ -53,6 +53,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "updateCompanyDetails",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Mckinsey & Company\",\n    \"ceo\" : \"Gautam\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/update/95b5a067-808a-44a9-a490-b4ef8a045f61",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"update",
+						"95b5a067-808a-44a9-a490-b4ef8a045f61"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

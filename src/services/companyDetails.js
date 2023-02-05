@@ -47,9 +47,21 @@ const getTopRankedCompanyDetails = async (sectorName) => {
   }
   return res;
 };
+const updateCompanyDetails = async (id, data) => {
+  const res = await companyDetails.update({
+    name: data.name,
+    ceo: data.ceo,
+  }, {
+    where: {
+      companyId: id,
+    },
+  });
+  return res;
+};
 module.exports= {
   saveCompanyDetails,
   saveCompanySectorDetails,
   updateCompanyScore,
   getTopRankedCompanyDetails,
+  updateCompanyDetails,
 };

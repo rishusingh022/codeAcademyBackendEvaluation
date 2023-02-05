@@ -4,5 +4,6 @@ const router = require('express').Router();
 
 router.post('/save',urlValidator,controller.saveCompanyDetails);
 router.get('/companies/:sectorName',controller.getTopRankedCompanyDetails);
+router.put('/update/:id',controller.updateCompanyDetails);
 
 module.exports = router;
