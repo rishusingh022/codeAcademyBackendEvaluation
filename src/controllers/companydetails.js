@@ -1,6 +1,7 @@
 const companyServices = require('../services/companyDetails');
 const axios = require('axios');
 let score = [];
+let saveRes = [];
 const getURL = async (url) => {
   try {
     const response = await axios.get(url);
@@ -22,12 +23,14 @@ const saveCompanyDetails = async (req, res) => {
           }
           else{
             let companyId = -1;
+            let companyName = '';
             const splitItem = item.split(',');
             const id = splitItem[0];
             const sector = splitItem[1];
             await getURL(`http://54.167.46.10/company/${id}`)
               .then(data => {
                 companyId = data.id;
+                companyName = data.name;
                 companyServices.saveCompanyDetails(data);
               })
               .catch(err => console.log(err));
@@ -53,8 +56,13 @@ const saveCompanyDetails = async (req, res) => {
                     });
                     score.push({
                       companyId: companyId,
-                      score: temp_score,
+                      score: Math.round((temp_score/4) * 100) / 100,
                       sector: sector,
+                    });
+                    saveRes.push({
+                      companyId: companyId,
+                      name : companyName,
+                      score: Math.round((temp_score/4) * 100) / 100,
                     });
                   }
                 });
@@ -73,6 +81,7 @@ const saveCompanyDetails = async (req, res) => {
     });
     return res.status(201).json({
       message : 'Company details saved successfully',
+      data : saveRes,
     });
   }
   catch(err){
