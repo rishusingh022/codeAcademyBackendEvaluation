@@ -18,7 +18,6 @@ describe('TestCases for company data services', () => {
   });
   describe('TestCases for saveCompanySectorDetails', () => {
     it('Should save company sector details fetched', async () => {
-      // mock res is an array of json objects
       const mockRes = [{
         id: 'test',
         name: 'test',
@@ -40,6 +39,41 @@ describe('TestCases for company data services', () => {
       const mockRes = 1 ;
       jest.spyOn(db.companyDetails, 'update').mockResolvedValue(mockRes);
       const companyDetails = await companyDataServices.updateCompanyScore(mockReq);
+      expect(companyDetails).toEqual(mockRes);
+    });
+  });
+  describe('TestCases for getTopRankedCompanyDetails', () => {
+    it('Should get top ranked companies', async () => {
+      const mockReq = {
+        sectorName: 'test',
+      };
+      // Array [Object {}]
+      const mockRes = [{
+        id: undefined,
+        name: 'test',
+        ceo: 'test',
+        score: 100,
+        ranking: 1,
+      }];
+      jest.spyOn(db.companyDetails, 'findAll').mockResolvedValue(mockRes);
+      const companyDetails = await companyDataServices.getTopRankedCompanyDetails(mockReq.sectorName);
+      expect(companyDetails).toEqual(mockRes);
+    });
+  });
+  describe('TestCases for updateCompanyDetails', () => {
+    it('Should update company details', async () => {
+      const mockReq = {
+        params: {
+          id: 'test',
+        },
+        body : {
+          name: 'test',
+          ceo: 'test',
+        }
+      };
+      const mockRes = 1;
+      jest.spyOn(db.companyDetails, 'update').mockResolvedValue(mockRes);
+      const companyDetails = await companyDataServices.updateCompanyDetails(mockReq.params.id, mockReq.body);
       expect(companyDetails).toEqual(mockRes);
     });
   });
