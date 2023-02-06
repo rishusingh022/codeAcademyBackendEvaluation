@@ -4,7 +4,7 @@ describe('urlValidator', () => {
   it('Should return 400 as status code if url is not provided', async () => {
     const mockReq = {
       body: {
-        url: '',
+        urlLink: '',
       },
     };
     const mockRes = {
@@ -15,14 +15,14 @@ describe('urlValidator', () => {
     urlValidator(mockReq,mockRes, () => {});
     expect(mockRes.status).toBeCalledWith(400);
     expect(mockRes.json).toBeCalledWith({
-      message : '"url" is not allowed to be empty',
+      message : '"urlLink" is not allowed to be empty',
     });
     expect(next).not.toBeCalled();
   });
   it('Should return 400 as status code if url is not valid', async () => {
     const mockReq = {
       body: {
-        url: 'invalid url',
+        urlLink: 'invalid url',
       },
     };
     const mockRes = {
@@ -33,14 +33,14 @@ describe('urlValidator', () => {
     urlValidator(mockReq,mockRes, () => {});
     expect(mockRes.status).toBeCalledWith(400);
     expect(mockRes.json).toBeCalledWith({
-      message : '"url" must be a valid uri',
+      message : '"urlLink" must be a valid uri',
     });
     expect(next).not.toBeCalled();
   });
   it('Should call next if url is validated', async () => {
     const mockReq = {
       body: {
-        url: 'https://store-0001.s3.amazonaws.com/input.csv',
+        urlLink: 'https://store-0001.s3.amazonaws.com/input.csv',
       },
     };
     const mockRes = {
@@ -56,7 +56,7 @@ describe('urlValidator', () => {
   it('Should return 500 if error is not HTTPError', async () => {
     const mockReq = {
       body: {
-        url: 'https://store-0001.s3.amazonaws.com/input.csv',
+        urlLink: 'https://store-0001.s3.amazonaws.com/input.csv',
       },
     };
     const mockRes = {
