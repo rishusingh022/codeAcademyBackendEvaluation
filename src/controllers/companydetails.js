@@ -1,5 +1,6 @@
 const companyServices = require('../services/companyDetails');
 const axios = require('axios');
+
 let score = [];
 let saveRes = [];
 const getURL = async (url) => {
